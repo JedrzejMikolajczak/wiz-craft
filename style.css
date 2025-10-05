@@ -31,7 +31,6 @@ body{
   z-index: -1; 
   background: var(--bg);
 }
-
 .container{
   width:100%;
   max-width:var(--maxw);
@@ -235,4 +234,109 @@ footer{
   }
   .side-line.left { left: 32px; }
   .side-line.right { right: 32px; }
+}
+
+/* ========== Mikro-interakcje i animacje ========== */
+html { scroll-behavior: smooth; }
+* { transition: background-color .25s ease, color .25s ease, border-color .25s ease; }
+
+/* Linki w nav */
+nav a { position: relative; }
+nav a::after {
+  content:"";
+  position:absolute; left:0; right:0; bottom:-6px;
+  height:2px; border-radius:2px;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .28s ease;
+}
+nav a:hover::after, nav a:focus-visible::after { transform: scaleX(1); }
+
+/* Przycisk */
+.btn {
+  transition: transform .18s ease, box-shadow .18s ease;
+  will-change: transform;
+}
+.btn:hover, .btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 38px rgba(6,95,70,0.18);
+}
+
+/* Karty */
+.card {
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 34px rgba(2,6,23,0.72);
+}
+
+/* Featy */
+.feat { transition: transform .18s ease, background .18s ease; }
+.feat:hover { transform: translateY(-2px) scale(1.02); background: rgba(255,255,255,0.06); }
+
+/* Shimmer w portfolio */
+.thumb {
+  position: relative;
+  overflow: hidden;
+}
+.thumb::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 50%, transparent 100%);
+  transform: translateX(-120%);
+}
+.portfolio-item:hover .thumb::before{
+  animation: shimmer 1s ease;
+}
+@keyframes shimmer {
+  to { transform: translateX(120%); }
+}
+
+/* Logo lekko się kołysze */
+.logo { animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-4px); }
+}
+
+/* Formularz */
+input, textarea {
+  transition: border-color .2s ease, box-shadow .2s ease, transform .12s ease;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: rgba(94,234,180,.6);
+  box-shadow: 0 0 0 3px rgba(94,234,180,.15);
+  transform: translateY(-1px);
+}
+
+/* Pulsujący gradient w priceBox */
+.priceBox {
+  position: relative;
+  overflow: hidden;
+}
+.priceBox::after{
+  content:"";
+  position:absolute; inset:-2px;
+  border-radius:12px;
+  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent));
+  filter: blur(18px) opacity(.25);
+  z-index: -1;
+  animation: spin 8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
 }
