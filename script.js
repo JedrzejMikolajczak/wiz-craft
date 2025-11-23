@@ -90,7 +90,6 @@ function updateSwitcher() {
         slide.classList.remove('active');
     });
 
-    // 2. Dodaj klasę 'active' tylko do bieżącego slajdu
     slides[currentIndex].classList.add('active');
 }
 

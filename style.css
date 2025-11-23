@@ -517,3 +517,180 @@ form button.btn {
         text-align: center;
     }
 }
+.container {
+    max-width: 1200px; 
+    width: 90%; 
+    margin: 0 auto;
+    padding: 0 10px; 
+}
+
+@media (max-width: 950px) {
+    .hero {
+        flex-direction: column; 
+        text-align: center;
+        padding-top: 40px;
+    }
+    .hero-left, .code-box {
+        max-width: 100%; 
+    }
+    .code-box {
+        margin-top: 40px;
+        align-self: center;
+    }
+
+    .features {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+        justify-items: start; 
+        max-width: 500px;
+        margin: 16px auto; 
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column; 
+        margin-bottom: 25px;
+    }
+    nav {
+        flex-direction: column; 
+        gap: 15px;
+        margin-top: 15px;
+    }
+    nav a.btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+    .hero{
+      margin-bottom: 30px;
+    }
+    
+    .pricing-grid, 
+    #gwarancje .steps, 
+    #proces .steps {
+        grid-template-columns: 1fr; 
+    }
+    
+    .price-card {
+        padding: 30px 15px;
+    }
+    #gwarancje{
+      margin-bottom: 15px;
+    }
+    .features {
+        grid-template-columns: 1fr; 
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .features .feat {
+        padding: 10px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .features .feat:last-child {
+        border-bottom: none;
+        margin-bottom: 20px;
+    }
+
+    .contact {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact > div { 
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .contact form {
+        width: 100%;
+        max-width: 400px;
+    }
+    .steps{
+      flex-direction:column;
+    }
+
+
+    .design-slide {
+        flex-direction: column; 
+    }
+    .design-slide img, .design-opis {
+        max-width: 100%;
+        width: 100%;
+    }
+    .design-slide img {
+        margin-bottom: 20px;
+    }
+    .design-opis {
+        text-align: center;
+    }
+    .design-opis .btn-demo {
+        width: 100%;
+        box-sizing: border-box; 
+    }
+}
+/* Sekcja Gwarancje - Ogólne */
+#gwarancje {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-color); /* Upewnij się, że tekst jest widoczny */
+}
+
+#gwarancje h2 {
+    margin-bottom: 40px;
+}
+
+/* Kontener siatki dla korzyści */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 kolumny na dużych ekranach */
+    gap: 20px; /* Odstęp między kartami */
+    margin-top: 20px;
+    max-width: 1200px; /* Ograniczenie szerokości siatki */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Pojedyncza karta korzyści */
+.benefit-card {
+    background-color: #1a202c; /* Ciemne tło, pasujące do motywu */
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid #3d4a66; /* Subtelna ramka */
+    text-align: left; /* Tekst wyrównany do lewej */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.benefit-card strong {
+    color: var(--accent-secondary); 
+    display: block; 
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.benefit-card p {
+    color: #cccccc; 
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+
+
+@media (max-width: 950px) {
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 600px) {
+    .benefits-grid {
+        grid-template-columns: 1fr; 
+    }
+    .benefit-card {
+        text-align: center; 
+    }
+}
