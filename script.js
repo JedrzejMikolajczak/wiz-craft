@@ -1,4 +1,3 @@
-
 document.getElementById('year').textContent = new Date().getFullYear();
 const canvas = document.getElementById("particles");
 const ctx = canvas.getContext("2d");
@@ -54,3 +53,58 @@ function animateParticles() {
 
 initParticles();
 animateParticles();
+
+// Nowa logika animacji wczytywania
+const revealElementsOnScroll = () => {
+  const revealElements = document.querySelectorAll('.reveal');
+  const windowHeight = window.innerHeight;
+
+  revealElements.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
+    const revealPoint = 150; // Punkt w viewport (150px od dołu), w którym element ma się pojawić
+
+    if (elementTop < windowHeight - revealPoint) {
+      el.classList.add('active');
+    } else {
+      // Opcjonalnie: usunięcie klasy, jeśli element wyjedzie poza ekran (dla wielokrotnego uruchamiania)
+      // el.classList.remove('active');
+    }
+  });
+};
+
+// Dodanie słuchaczy zdarzeń
+window.addEventListener('scroll', revealElementsOnScroll);
+window.addEventListener('load', revealElementsOnScroll); // Uruchomienie przy starcie, aby elementy na górze strony od razu się pojawiły
+// ... (Twój kod animateParticles()...)
+// ... (Twój kod revealElementsOnScroll()...)
+
+// NOWA LOGIKA DLA SLIDERA PORTFOLIO
+const slides = document.querySelectorAll('.design-slide');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+let currentIndex = 0;
+
+function updateSwitcher() {
+    // 1. Usuń klasę 'active' ze wszystkich slajdów
+    slides.forEach(slide => {
+        slide.classList.remove('active');
+    });
+
+    // 2. Dodaj klasę 'active' tylko do bieżącego slajdu
+    slides[currentIndex].classList.add('active');
+}
+
+prevBtn.addEventListener('click', () => {
+    // Oblicz nowy index (zawijanie do końca)
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSwitcher();
+});
+
+nextBtn.addEventListener('click', () => {
+    // Oblicz nowy index (zawijanie do początku)
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSwitcher();
+});
+
+// Inicjalizacja przy ładowaniu strony
+updateSwitcher();
